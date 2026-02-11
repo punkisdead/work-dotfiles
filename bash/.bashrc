@@ -112,4 +112,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
-PATH="$HOME/.local/bin:$PATH"
+PATH="$HOME/.local/bin:$PATH:$HOME/.config/emacs/bin"
+eval "$(mise activate bash)"
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+export SSH_ASKPASS=/usr/lib/openssh/gnome-ssh-askpass
+export SSH_ASKPASS_REQUIRE=prefer

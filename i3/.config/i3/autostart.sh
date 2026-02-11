@@ -6,8 +6,8 @@ dunst &
 
 killall nm-applet
 nm-applet &
-#killall blueman-applet
-#blueman-applet &
+killall blueman-applet
+blueman-applet &
 
 killall volumeicon
 volumeicon &

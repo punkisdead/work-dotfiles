@@ -7,7 +7,8 @@ include $HOME/.config/i3/colors.conf
 #exec_always --no-startup-id feh --bg-fill ~/.config/wallpapers/moon.jpg
 exec_always --no-startup-id ~/.fehbg
 exec_always --no-startup-id ~/.config/i3/autostart.sh
-exec --no-startup-id ~/.config/scripts/help_notification.sh
+#exec --no-startup-id ~/.config/scripts/help_notification.sh
+exec --no-startup-id emacs --daemon
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 #exec --no-startup-id ~/.config/scripts/resolution.sh
 #exec --no-startup-id ~/.config/scripts/resolution-double.sh
@@ -22,7 +23,7 @@ smart_borders on
 ######################################
 #             Theme
 
-font pango:monospace 8
+font pango:monospace 10
 new_window 1pixel
 gaps inner $g_inner
 gaps outer $g_outer
@@ -34,11 +35,11 @@ bindsym $mod+q kill
 ######################################
 #           	Gaps
 
-bindsym $mod+Shift+n 	gaps inner current set $g_inner; gaps outer current set $g_outer
-bindsym $mod+x		gaps outer current plus 5
-bindsym $mod+Shift+x	gaps outer current minus 5 
-bindsym $mod+z		gaps inner current plus 5
-bindsym $mod+Shift+z	gaps inner current minus 5
+# bindsym $mod+Shift+n 	gaps inner current set $g_inner; gaps outer current set $g_outer
+# bindsym $mod+x		gaps outer current plus 5
+# bindsym $mod+Shift+x	gaps outer current minus 5 
+# bindsym $mod+z		gaps inner current plus 5
+# bindsym $mod+Shift+z	gaps inner current minus 5
 ######################################
 #    	 System keybindings
 

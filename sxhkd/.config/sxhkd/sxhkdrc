@@ -1,73 +1,22 @@
-super + shift + h
-  zathura "$HOME/.config/guide.pdf"
-
-alt + x
-	alacritty -e "ranger" ~/Downloads/Watch
-
-alt + c
-	alacritty -e ~/.config/scripts/conf.sh
-
-alt + s
-	feh -F "$HOME/Pictures/schedule.png"
-
-alt + b 
-	source ~/.config/scripts/bookmarks.sh
-
-alt + l
-	/mnt/FILES/Files/My_Stuff/mytodo/todo
-
-alt + y 
-	source ~/.config/scripts/mpv-youtube.sh
-
-
-alt + z 
-	source ~/.config/scripts/bookmark_pdf.sh
-
-alt + p 
-  pavucontrol
-
-# BG Selector
-
-F1
-	source ~/.config/scripts/wallpaper-single-display.sh
-
-F2
-	source ~/.config/scripts/wallpaper-double-display.sh
-
 # Programs
 
 super + Return
 	alacritty
 
-super + p
-   	rofi -show drun -line padding 4 -hide-scrollbar -show-icons
-   	
 super + d
-	discord
+   	rofi -show drun -line padding 4 -hide-scrollbar -show-icons
 
 super + r
    	alacritty -e "ranger"
 
-super + n
-	pcmanfm
-
-super + g
-	github-desktop
-
 super + w
    	brave-browser
-
-super + c 
-	codium
-
-super + t
-   	telegram-desktop
 
 Print
    	flameshot gui
 
-alt + w
- 	rofi -show
+#alt + w
+ 	#rofi -show
 
 # Audio Keybindings
 
@@ -89,9 +38,6 @@ XF86MonBrightnessUp
     ~/.config/scripts/brightness-control.sh XF86MonBrightnessUp
 
 # Switch between keyboard languages
-
-alt + space
-    source ~/.config/scripts/keyboard_layout.sh
 
 #i3 Specific Keybindings
 
