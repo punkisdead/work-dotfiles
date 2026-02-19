@@ -1,0 +1,256 @@
+######################################
+#            Outputs & Inputs
+
+# Wallpaper (applied to all outputs)
+output * bg ~/.config/wallpapers/horizon.jpg fill
+
+# Keyboard configuration
+input type:keyboard {
+    xkb_numlock enabled
+    xkb_options ctrl:nocaps
+}
+
+# Touchpad configuration
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+    dwt enabled
+}
+
+######################################
+#              Vars
+
+set $mod Mod4
+set $alt Mod1
+set $g_inner 9
+set $g_outer 4
+smart_borders on
+
+######################################
+#             Theme
+
+font pango:monospace 10
+gaps inner $g_inner
+gaps outer $g_outer
+default_border pixel 2
+default_floating_border pixel 2
+floating_modifier $mod normal
+
+######################################
+#              Colors
+# class                 border  bground text    indicator child_border
+client.focused          #6C6F93 #6C6F93 #F8F8F2 #6C6F93   #6C6F93
+client.focused_inactive #282e3a #282e3a #F8F8F2 #282e3a   #282e3a
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+
+client.background       #F8F8F2
+
+######################################
+#           Workspaces
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# Workspace back and forth
+workspace_auto_back_and_forth yes
+bindsym $mod+Tab workspace back_and_forth
+
+# Monitor assignments: DP-1 (external ultrawide), eDP-1 (laptop)
+workspace 1 output DP-1
+workspace 2 output DP-1
+workspace 3 output DP-1
+workspace 4 output DP-1
+workspace 5 output DP-1
+workspace 6 output eDP-1
+workspace 7 output eDP-1
+workspace 8 output eDP-1
+workspace 9 output eDP-1
+workspace 10 output eDP-1
+
+######################################
+#          Window Assignments
+
+assign [class="Brave-browser"] 1
+assign [class="Pcmanfm"] 2
+assign [class="Codium"] 3
+assign [class="TelegramDesktop"] 4
+assign [class="discord"] 5
+assign [class="GitHub Desktop"] 10
+
+for_window [class=Brave-browser] focus
+for_window [class=Pcmanfm] focus
+for_window [class=Codium] focus
+for_window [class=TelegramDesktop] focus
+for_window [class=discord] focus
+for_window [class="GitHub Desktop"] focus
+
+######################################
+#          Window Rules
+
+# Floating alacritty (app_id for native Wayland)
+for_window [app_id="AlacrittyFloating"] floating enable, move position center
+
+for_window [class="Sxiv"] fullscreen
+for_window [title="alsamixer"] floating enable border pixel 1
+for_window [class="gnome-disks"] floating enable border pixel 1
+for_window [class="Galculator"] floating enable border pixel 1
+for_window [class="GParted"] floating enable border normal
+for_window [class="Lxappearance"] floating enable sticky enable border normal
+for_window [class="Pavucontrol"] floating enable
+for_window [app_id="pavucontrol"] floating enable
+for_window [class="qt5ct"] floating enable sticky enable border normal
+for_window [class="Simple-scan"] floating enable border normal
+for_window [class="Todo"] floating enable sticky enable border normal
+for_window [app_id="wdisplays"] floating enable
+
+# Switch to workspace with urgent window automatically
+for_window [urgent=latest] focus
+focus_on_window_activation focus
+
+######################################
+#         Keybindings — Apps
+
+# Terminal
+bindsym $mod+Return exec alacritty
+bindsym $mod+Shift+Return exec alacritty --class AlacrittyFloating
+
+# App launcher
+bindsym $mod+d exec wofi --show drun
+
+# File manager
+bindsym $mod+r exec alacritty -e ranger
+
+
+# Screenshot (region select → annotation editor)
+bindsym Print exec grim -g "$(slurp)" - | swappy -f -
+
+# Lock screen
+bindsym $mod+l exec ~/.config/sway/lock.sh
+
+######################################
+#         Keybindings — Window Mgmt
+
+# Kill focused window
+bindsym $mod+q kill
+
+# System
+bindsym $mod+Shift+b exec sudo reboot
+bindsym $mod+Shift+s exec sudo shutdown now
+bindsym $mod+Shift+q exec swaymsg exit
+bindsym $mod+Shift+c reload
+
+# Layout
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Split
+bindsym $mod+b splith
+bindsym $mod+v splitv
+
+# Fullscreen / Floating
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f floating toggle
+bindsym $mod+Control+space focus mode_toggle
+bindsym $mod+a focus parent
+
+# Focus (vim keys — $mod+l is lock, use arrow for right)
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+
+# Focus (arrow keys)
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move (vim keys)
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Move (arrow keys)
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Resize
+bindsym $mod+Control+Left resize grow width 5 px or 5 ppt
+bindsym $mod+Control+Down resize shrink height 5 px or 5 ppt
+bindsym $mod+Control+Up resize grow height 5 px or 5 ppt
+bindsym $mod+Control+Right resize shrink width 5 px or 5 ppt
+
+######################################
+#         Keybindings — Media
+
+# Volume
+bindsym XF86AudioMute exec amixer set Master toggle
+bindsym XF86AudioLowerVolume exec amixer set Master 5%-
+bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
+
+# Playback
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioStop exec playerctl stop
+
+# Brightness
+bindsym XF86MonBrightnessDown exec ~/.config/scripts/brightness-control.sh XF86MonBrightnessDown
+bindsym XF86MonBrightnessUp exec ~/.config/scripts/brightness-control.sh XF86MonBrightnessUp
+
+######################################
+#           Autostart
+
+exec sh -c 'echo "" | gnome-keyring-daemon --unlock --components=secrets,pkcs11'
+exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+exec nm-applet --indicator
+exec blueman-applet
+exec pasystray
+exec swaync
+exec_always "pkill kanshi; kanshi"
+exec waybar
+exec emacs --daemon
+
+# Idle management: lock at 15min, screens off at 20min, lock before sleep
+exec swayidle -w \
+    timeout 900 '~/.config/sway/lock.sh' \
+    timeout 1200 'swaymsg "output * power off"' \
+    resume 'swaymsg "output * power on"' \
+    before-sleep '~/.config/sway/lock.sh'

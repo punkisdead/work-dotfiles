@@ -1,0 +1,8 @@
+profile docked {
+    output eDP-1 mode 1920x1200 position 0,0
+    output DP-1 mode 3440x1440@50Hz position 1920,0
+}
+
+profile undocked {
+    output eDP-1 mode 1920x1200 position 0,0
+}
