@@ -28,7 +28,7 @@ font-1 = unifont:fontformat=truetype:size=10:antialias=false;0
 font-2 = siji:pixelsize=12;1
 modules-left = menu date xwindow
 modules-center = i3
-modules-right = pulseaudio xkeyboard memory cpu wlan battery 
+modules-right = idle-inhibit pulseaudio xkeyboard memory cpu wlan battery
 cursor-click = pointer
 cursor-scroll = ns-resize
 enable-ipc = true
@@ -182,4 +182,9 @@ menu-0-3-exec = brave-browser &
 format = <label-toggle> <menu>
 format-foreground = ${color.primary}
 label-open = 
-label-close = 
+label-close =
+
+[module/idle-inhibit]
+type = custom/script
+exec = /home/jeremy/.config/polybar/scripts/idle-inhibit.sh status
+interval = 1
